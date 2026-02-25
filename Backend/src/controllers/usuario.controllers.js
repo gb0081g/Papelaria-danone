@@ -1,4 +1,4 @@
-const repo = require("../repositories/user.repo");
+const repo = require("../repositories/usuario.repo");
 
 async function me(req, res, next) {
   try {
