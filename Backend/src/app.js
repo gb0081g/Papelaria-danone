@@ -1,18 +1,24 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+require("dotenv").config();
 
-const app = express()
+const express = require("express");
+const cors = require("cors");
 
-app.use(cors())
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+const authRoutes = require("./routes/auth.routes");
+const userRoutes = require("./routes/users.routes");
+//const itemRoutes = require("./routes/items.routes");
+const {errorHandler} = require("./middlewares/error.middleware");
 
-app.get('/ola', (req, res) => {
-    res.send('Olá mundo!')
-})
+const app = express();
 
-app.listen(3000)
-// http://localhost:3000/
+app.use(cors());
+app.use(express.json());
 
-module.exports = app
+app.get("/health", (req, res)=> res.json({ok: true}));
+
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
+//app.use("/items", itemRoutes);
+
+app.use(errorHandler);
+
+module.exports = app;
