@@ -1,8 +1,9 @@
 const express = require("express");
-const { me } = require("../controllers/usuario.controllers");
+const { list, create } = require("../controllers/items.controller");
 const { authRequired } = require("../middlewares/auth.middleware");
 const router = express.Router();
 
-router.get("/me", authRequired, me);
+router.get("/", authRequired, list);
+router.post("/", authRequired, create);
 
 module.exports = router;

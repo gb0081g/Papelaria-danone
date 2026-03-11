@@ -1,37 +1,25 @@
 {
-  "name": "papelaria-danone",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "trabalho de S.A.",
+  "description": "",
   "main": "index.js",
-  "scripts2": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gb0081g/Papelaria-danone.git"
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/gb0081g/Papelaria-danone/issues"
-  },
-  "homepage": "https://github.com/gb0081g/Papelaria-danone#readme",
   "dependencies": {
-    "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
-    "body-parser": "^2.2.2",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mysql2": "^3.17.0"
+    "mysql2": "^3.18.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-  },
-  "scripts": {
-    "dev": "nodemon server.js"
   }
 }
