@@ -16,12 +16,17 @@ async function register(req, res, next) {
 
 async function login(req, res, next) {
   try {
+
     const { email, password } = req.body;
+    console.log(`Login attempt for email: ${email} - password: ${password}`);
     const user = await repo.findByEmail(email);
     if (!user) return res.status(401).json({ message: "Credenciais inválidas" });
+    console.log(`User found: ${user.email}`);
 
-    const ok = await comparePassword(password, user.password_hash);
+    const ok = await comparePassword(password, user.senhaHash);
     if (!ok) return res.status(401).json({ message: "Credenciais inválidas" });
+    console.log(`Password match for user: ${user.email}`);
+
 
     const token = jwt.sign(
       { id: user.id, email: user.email },
@@ -30,7 +35,7 @@ async function login(req, res, next) {
     );
 
     res.json({ accessToken: token });
-  } catch (e) { next(e); }
+  } catch (e) { console.log(`erro: ${e.message}`);next(e); }
 }
 
 module.exports = { register, login };
