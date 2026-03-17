@@ -19,8 +19,8 @@ async function login(req, res, next) {
     const { email, password } = req.body;
     const user = await repo.findByEmail(email);
     if (!user) return res.status(401).json({ message: "Credenciais inválidas" });
-
-    const ok = await comparePassword(password, user.password_hash);
+    
+    const ok = await comparePassword(password, user.senhaHash);
     if (!ok) return res.status(401).json({ message: "Credenciais inválidas" });
 
     const token = jwt.sign(
